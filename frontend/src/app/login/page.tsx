@@ -58,7 +58,7 @@ const Login = () => {
     <div className="flex items-center justify-center w-full min-h-screen bg-black">
       <form
         className="flex flex-col items-center w-1/2 gap-3 px-10 py-6 bg-black border border-solid rounded shadow-md border-zinc-500 lg:w-1/3"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(guardlessLogin)}
       >
         <div className="w-full mb-8 text-xl font-bold text-center text-zinc-50">
           <h1>Login</h1>

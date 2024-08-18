@@ -35,21 +35,31 @@ export default function DashboardLayout({
   const handleAlert = () => {
     setIsFetching(true);
 
-    userAlert()
-      .then(() => {
-        showToast(
+    // Un-comment for API interactivity
+    // userAlert()
+    //   .then(() => {
+    //     showToast(
+    //       'Alerta',
+    //       'Inconsistência de dados ou equipamentos foram detectados no sistema!',
+    //       true
+    //     );
+    //   })
+    //   .catch((e) => {
+    //     console.log(e);
+    //     showToast('Erro', 'Ocorreu um erro ao acionar o alerta!', true);
+    //   })
+    //   .finally(() => {
+    //     setIsFetching(false);
+    //   });
+
+    // Static toast
+      showToast(
           'Alerta',
           'Inconsistência de dados ou equipamentos foram detectados no sistema!',
           true
-        );
-      })
-      .catch((e) => {
-        console.log(e);
-        showToast('Erro', 'Ocorreu um erro ao acionar o alerta!', true);
-      })
-      .finally(() => {
-        setIsFetching(false);
-      });
+      );
+
+      setIsFetching(false)
   };
 
   const handleSensor = () => {
@@ -63,16 +73,16 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="flex flex-col min-h-screen min-w-full">
+    <div className="flex flex-col min-w-full min-h-screen">
       <Header />
-      <main className="relative flex items-center justify-center min-h-screen min-w-full">
+      <main className="relative flex items-center justify-center min-w-full min-h-screen">
         {children}
-        <div className="flex flex-col-reverse items-center justify-center gap-3 absolute bottom-24 left-8">
+        <div className="absolute flex flex-col-reverse items-center justify-center gap-3 bottom-24 left-8">
           <Button
             variant="destructive"
             title="Emitir alerta"
             size="icon"
-            className="w-14 h-14 rounded-full"
+            className="rounded-full w-14 h-14"
             onClick={handleAlert}
             disabled={isFetching}
           >
@@ -82,7 +92,7 @@ export default function DashboardLayout({
             variant="secondary"
             title="Ir para sensores"
             size="icon"
-            className="w-14 h-14 rounded-full"
+            className="rounded-full w-14 h-14"
             onClick={handleSensor}
             disabled={isFetching}
           >
