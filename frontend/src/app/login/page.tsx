@@ -30,7 +30,7 @@ const Login = () => {
 
   const [isUpdating, setIsUpdating] = useState(false);
 
-  const { push } = useRouter();
+  const { push, replace } = useRouter();
 
   const onSubmit: SubmitHandler<LoginProps> = (data) => {
     setIsUpdating(true);
@@ -50,24 +50,28 @@ const Login = () => {
       });
   };
 
+  function guardlessLogin() {
+    replace('/plate-registry')
+  }
+
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-black">
+    <div className="flex items-center justify-center w-full min-h-screen bg-black">
       <form
-        className="flex flex-col items-center gap-3 border border-solid border-zinc-500 bg-black w-1/2 lg:w-1/3 shadow-md rounded py-6 px-10"
+        className="flex flex-col items-center w-1/2 gap-3 px-10 py-6 bg-black border border-solid rounded shadow-md border-zinc-500 lg:w-1/3"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="w-full text-zinc-50 text-xl font-bold text-center mb-8">
+        <div className="w-full mb-8 text-xl font-bold text-center text-zinc-50">
           <h1>Login</h1>
         </div>
         <div className="w-full">
           <label
-            className="block text-gray-50 text-sm font-bold mb-2"
+            className="block mb-2 text-sm font-bold text-gray-50"
             htmlFor="email_input"
           >
             Email
           </label>
           <input
-            className="shadow relative appearance-none border border-zinc-600 rounded w-full py-2 px-3 text-zinc-100 bg-transparent leading-tight cursor-pointer"
+            className="relative w-full px-3 py-2 leading-tight bg-transparent border rounded shadow appearance-none cursor-pointer border-zinc-600 text-zinc-100"
             id="email_input"
             type="text"
             placeholder="example@gmail.com"
@@ -78,13 +82,13 @@ const Login = () => {
         </div>
         <div className="w-full">
           <label
-            className="block text-gray-50 text-sm font-bold mb-2"
+            className="block mb-2 text-sm font-bold text-gray-50"
             htmlFor="password_input"
           >
             Senha
           </label>
           <input
-            className="shadow relative appearance-none border border-zinc-600 rounded w-full py-2 px-3 text-zinc-100 bg-transparent leading-tight cursor-pointer"
+            className="relative w-full px-3 py-2 leading-tight bg-transparent border rounded shadow appearance-none cursor-pointer border-zinc-600 text-zinc-100"
             placeholder="digite sua senha..."
             id="password_input"
             type="password"
@@ -95,11 +99,11 @@ const Login = () => {
         </div>
         <Separator className="h-[1px] w-2/3 my-2 bg-zinc-700" />
         <Button
-          className="cursor-pointer bg-zinc-50 hover:bg-zinc-800 text-black hover:text-zinc-50 font-bold py-2 w-full rounded focus:outline-none focus:shadow-outline transition ease-in-out duration-300"
+          className="w-full py-2 font-bold text-black transition duration-300 ease-in-out rounded cursor-pointer bg-zinc-50 hover:bg-zinc-800 hover:text-zinc-50 focus:outline-none focus:shadow-outline"
           type="submit"
           disabled={isUpdating}
         >
-          {isUpdating && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isUpdating && <Loader2 className="w-4 h-4 mr-2 animate-spin" />}
           Entrar
         </Button>
       </form>
